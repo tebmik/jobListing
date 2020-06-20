@@ -1,17 +1,51 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import styled from "styled-components";
+import ReactDOM from "react-dom";
+import { Router } from "react-router-dom";
+import { Provider } from "react-redux";
+
+import store from "./store/store";
+import history from "./hoc/history";
+
+import theme from "./utils/theme";
+import GlobalStyles from "./utils/global";
+import { ThemeProvider } from "styled-components";
+
+import App from "./components/App";
+import Loader from "../src/components/ui/loader/Loader";
+
+const root = document.querySelector("#root");
+
+const StyledReadyWrapper = styled.div`
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+`;
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  <ThemeProvider theme={theme}>
+    <StyledReadyWrapper>
+      <Loader />
+    </StyledReadyWrapper>
+  </ThemeProvider>,
+  root
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+store.firebaseAuthIsReady.then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <Router history={history}>
+        <ThemeProvider theme={theme}>
+          <>
+            <App />
+            <GlobalStyles />
+          </>
+        </ThemeProvider>
+      </Router>
+    </Provider>,
+    root
+  );
+});
