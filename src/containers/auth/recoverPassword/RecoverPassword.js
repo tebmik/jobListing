@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Formik, Field } from "formik";
 import * as Yup from "yup";
 import { connect } from "react-redux";
@@ -23,7 +23,14 @@ let RecoverySchema = Yup.object().shape({
         .required("An email is required."),
 });
 
-const RecoverPassword = ({ loading, error, recoverPassword }) => {
+const RecoverPassword = ({ loading, error, recoverPassword, cleanUp }) => {
+
+    useEffect(() => {
+        return () => {
+            cleanUp()
+        }
+    }, [cleanUp])
+    
     return (
         <SignupWrapper>
             <Formik
@@ -72,7 +79,8 @@ const mapStateToProps = ({ auth }) => ({
     error: auth.recoverPassword.error
 });
 const mapDispatchToProps = {
-    recoverPassword: actions.recoverPassword
+    recoverPassword: actions.recoverPassword,
+    cleanUp: actions.cleanUp
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecoverPassword);
