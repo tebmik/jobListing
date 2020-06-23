@@ -95,5 +95,32 @@ export const recoverPassword = (data) => async ( dispatch, getState, { getFireba
   }catch(err) {
     dispatch({ type: actions.RECOVER_ERROR, payload: err.message })
   }
-  // dispatch({ type: actions.RECOVER_END });
+  dispatch({ type: actions.RECOVER_END });
+};
+
+export const updateProfile = (data) => async ( dispatch, getState, { getFirebase, getFirestore } ) => {
+  const firebase = getFirebase();
+  const firestore = getFirestore();
+  dispatch({ type: actions.PROFILE_UPDATE_START });
+  try {
+    const user = firebase.auth().currentUser;
+    const {uid, email} = getState().firebase.auth;
+
+    if(data.email !== email) {
+      await user.updateEmail(data.email);
+    };
+
+    await firestore.collection("users").doc(uid).set({
+      userName: data.userName,
+    });
+
+    if(data.password.length > 0) {
+      await user.updatePassword(data.password);
+    };
+
+    dispatch({ type: actions.PROFILE_UPDATE_SUCCESS });
+  } catch(err) {
+    dispatch({ type: actions.PROFILE_UPDATE_ERROR, payload: err.message })
+  }
+  dispatch({ type: actions.PROFILE_UPDATE_END });
 };
