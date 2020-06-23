@@ -83,3 +83,17 @@ export const verifyEmail = () => async (
   }
   dispatch({ type: actions.VERIFY_END });
 };
+
+
+export const recoverPassword = (data) => async ( dispatch, getState, { getFirebase }) => {
+  const firebase = getFirebase();
+  dispatch({ type: actions.RECOVER_START });
+  try {
+    const auth = firebase.auth();
+    await auth.sendPasswordResetEmail(data.email);
+    dispatch({ type: actions.RECOVER_SUCCESS });
+  }catch(err) {
+    dispatch({ type: actions.RECOVER_ERROR, payload: err.message })
+  }
+  // dispatch({ type: actions.RECOVER_END });
+};
