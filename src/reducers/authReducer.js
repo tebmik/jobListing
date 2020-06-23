@@ -6,6 +6,10 @@ const initialState = {
     verifyEmail: {
         error: null,
         loading: false
+    },
+    recoverPassword: {
+        error: null,
+        loading: false
     }
 };
 
@@ -78,6 +82,40 @@ export default(state = initialState, {type, payload}) => {
                     error: false
                 }
             };
+        case actions.RECOVER_START:
+            return {
+                ...state,
+                recoverPassword: {
+                    ...state.recoverPassword, 
+                    loading: true
+                }
+            }
+        case actions.RECOVER_SUCCESS:
+            return {
+                ...state, 
+                recoverPassword: {
+                    ...state.recoveryPassword,
+                    loading: false,
+                    error: false
+                }
+            }
+        case actions.RECOVER_ERROR:
+            return {
+                ...state,
+                recoverPassword: {
+                    ...state.recoverPassword,
+                    loading: false,
+                    error: payload
+                }
+            }
+        case actions.RECOVER_END:
+            return {
+                ...state,
+                recoverPassword: {
+                    loading: false,
+                    error: null
+                }
+            }
         default:
             return state;
     }
