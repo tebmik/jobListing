@@ -10,6 +10,10 @@ const initialState = {
     recoverPassword: {
         error: null,
         loading: false
+    },
+    updateProfile: {
+        error: null,
+        loading: false
     }
 };
 
@@ -22,6 +26,16 @@ export default(state = initialState, {type, payload}) => {
                 loading: false,
                 verifyEmail: {
                     ...state.verifyEmail,
+                    error: null,
+                    loading: false
+                },
+                recoverPassword: {
+                    ...state.recoverPassword,
+                    error: null,
+                    loading: false
+                },
+                updateProfile: {
+                    ...state.updateProfile,
                     error: null,
                     loading: false
                 }
@@ -112,10 +126,47 @@ export default(state = initialState, {type, payload}) => {
             return {
                 ...state,
                 recoverPassword: {
+                    ...state.recoverPassword,
                     loading: false,
                     error: null
                 }
-            }
+            };
+        case actions.PROFILE_UPDATE_START:
+            return {
+                ...state, 
+                updateProfile: {
+                    ...state.updateProfile,
+                    loading: true,
+                    error: false
+                }
+            };
+        case actions.PROFILE_UPDATE_SUCCESS:
+            return {
+                ...state,
+                updateProfile: {
+                    ...state.updateProfile,
+                    loading: false,
+                    error: false
+                }
+            };
+        case actions.PROFILE_UPDATE_ERROR:
+            return {
+                ...state,
+                updateProfile: {
+                    ...state.updateProfile,
+                    loading: false,
+                    error: payload
+                }
+            };
+        case actions.PROFILE_UPDATE_END:
+            return {
+                ...state,
+                updateProfile: {
+                    ...state.updateProfile,
+                    loading: false,
+                    error: false
+                }
+            };
         default:
             return state;
     }
