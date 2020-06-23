@@ -24,8 +24,7 @@ const VerifyEmail = ({sendVerification, error, loading, cleanUp}) => {
             <FormWrapper>
                 <FormHeader>Time to verify your email.</FormHeader>
                 <StyledContent>
-                    Verify you email and gain access to all functionality of this
-                                                                      application.
+                    Verify you email and gain access to all functionality of this application.
                     <Button disabled={loading}
                         onClick={
                             () => sendVerification()
