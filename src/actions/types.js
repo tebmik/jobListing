@@ -14,3 +14,8 @@ export const VERIFY_START = "VERIFY_START";
 export const VERIFY_SUCCESS = "VERIFY_SUCCESS";
 export const VERIFY_ERROR = "VERIFY_ERROR";
 export const VERIFY_END = "VERIFY_END";
+
+export const RECOVER_START = "RECOVER_START";
+export const RECOVER_SUCCESS = "RECOVER_SUCCESS";
+export const RECOVER_ERROR = "RECOVER_ERROR";
+export const RECOVER_END = "RECOVER_END";
