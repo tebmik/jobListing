@@ -1,16 +1,21 @@
 import React from "react";
 import { Formik, Field } from "formik";
+import * as Yup from "yup";
+import { connect } from "react-redux";
+
+import * as actions from "../../../actions";
+
 import {
     FormWrapper,
     StyledForm,
     FormHeader,
     SignupWrapper,
+    MessageWrapper,
 } from "../../../hoc/containers";
-import * as Yup from "yup";
+
 import Input from "../../../components/ui/forms/input/input";
 import Button from "../../../components/buttons/Button";
-
-// import {connect} from "react-redux";
+import Message from "../../../components/ui/message/Message";
 
 let RecoverySchema = Yup.object().shape({
     email: Yup.string()
@@ -18,15 +23,15 @@ let RecoverySchema = Yup.object().shape({
         .required("An email is required."),
 });
 
-const RecoverPassword = () => {
+const RecoverPassword = ({ loading, error, recoverPassword }) => {
     return (
         <SignupWrapper>
             <Formik
                 initialValues={{ email: "" }}
                 validationSchema={RecoverySchema}
-                onSubmit={(values, { setSubmitting }) => {
-                    console.log(values);
-                    // setSubmitting(false)
+                onSubmit={ async (values, { setSubmitting }) => {
+                    await recoverPassword(values);
+                    setSubmitting(false);
                 }}>
                 {({ isSubmitting, isValid }) => (
                     <FormWrapper>
@@ -44,9 +49,17 @@ const RecoverPassword = () => {
                             <Button
                                 disabled={!isValid || isSubmitting}
                                 type="submit"
-                                title="Recover Password"
+                                title={loading ? "Sending to your email address" : "Recover Password"}
                             />
                         </StyledForm>
+                        <MessageWrapper>
+                            <Message error show={error}>
+                                {error} 
+                            </Message>
+                            <Message success show={error === false}>
+                                Email sent successfully.
+                            </Message>
+                        </MessageWrapper>
                     </FormWrapper>
                 )}
             </Formik>
@@ -54,8 +67,12 @@ const RecoverPassword = () => {
     );
 };
 
-// const mapStateToProps = ({ auth }) => ({
-//     loading: auth.
-// })
+const mapStateToProps = ({ auth }) => ({
+    loading: auth.recoverPassword.loading,
+    error: auth.recoverPassword.error
+});
+const mapDispatchToProps = {
+    recoverPassword: actions.recoverPassword
+};
 
-export default RecoverPassword;
+export default connect(mapStateToProps, mapDispatchToProps)(RecoverPassword);
