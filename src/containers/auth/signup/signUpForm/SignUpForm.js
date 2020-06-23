@@ -93,7 +93,7 @@ const SignUpForm = ({ signUp, loading, error, cleanUp, handleClick }) => {
                             />
                             <MessageWrapper>
                                 <Message error show={error}>
-                                    {error}{" "}
+                                    {error}
                                 </Message>
                             </MessageWrapper>
                         </StyledForm>
