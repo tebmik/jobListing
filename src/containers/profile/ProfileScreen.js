@@ -54,7 +54,6 @@ const ProfileScreen = ({ loading, error, updateProfile, cleanUp, firebase }) => 
                 validationSchema={ProfileSchema}
                 onSubmit={async (values, { setSubmitting }) => {
                     await updateProfile(values);
-                    console.log(values)
                     setSubmitting(false);
                 }}>
                 {({ isSubmitting, isValid }) => (
@@ -93,7 +92,7 @@ const ProfileScreen = ({ loading, error, updateProfile, cleanUp, firebase }) => 
                             <Button
                                 type="submit"
                                 title={loading ? "Updating..." : "Update Profile"}
-                                disabled={!isValid && isSubmitting}
+                                disabled={!isValid || isSubmitting}
                             />
 
                         </StyledForm>
@@ -102,7 +101,7 @@ const ProfileScreen = ({ loading, error, updateProfile, cleanUp, firebase }) => 
                                 {error}
                             </Message>
                             <Message success show={error === false}>
-                                Thankyou, Updatated successfully.
+                                Thankyou, Profile was updated!
                             </Message>
                         </MessageWrapper>
                     </FormWrapper>
