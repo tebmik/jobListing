@@ -21,6 +21,15 @@ const DeleteAccountP = styled.p`
     color: var(--color-danger);
     font-weight: 500;
     font-size: 1.6rem;
+    transition: all .25s ease-in-out;
+
+    &:hover {
+        transform: translateY(-0.25rem);
+    }
+
+    &:active {
+        transform: translateY(0.25rem);
+    }
 `;
 
 let ProfileSchema = Yup.object().shape({
