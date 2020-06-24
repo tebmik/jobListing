@@ -47,7 +47,7 @@ const ProfileScreen = ({ loading, error, updateProfile, cleanUp, firebase }) => 
             <Formik
                 initialValues={{
                     userName: firebase.profile.userName,
-                    email: firebase.profile.email,
+                    email: firebase.auth.email,
                     password: "",
                     confirmPassword: ""
                 }}
