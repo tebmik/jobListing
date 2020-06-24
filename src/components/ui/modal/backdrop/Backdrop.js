@@ -10,9 +10,8 @@ const Wrapper = styled.div`
     width: 100%;
     height: 100vh;
     opacity: ${({ opened }) => (opened ? "1" : "0")};
-    visability: ${({ opened }) => (opened ? "visable" : "hidden")};
+    visibility: ${({ opened }) => (opened ? "visible" : "hidden")};
     transition: all .2s ease-in-out;
-    display: ${({ opened }) => (opened ? "block" : "none")};
 `;
 
 
