@@ -137,7 +137,7 @@ export default(state = initialState, {type, payload}) => {
                 updateProfile: {
                     ...state.updateProfile,
                     loading: true,
-                    error: false
+                    error: null
                 }
             };
         case actions.PROFILE_UPDATE_SUCCESS:
