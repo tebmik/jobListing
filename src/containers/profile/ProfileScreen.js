@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import * as Yup from "yup";
 import { Formik, Field } from "formik";
 
@@ -7,11 +8,20 @@ import { SignupWrapper, FormWrapper, FormHeader, StyledForm, MessageWrapper } fr
 import Input from "../../components/ui/forms/input/input";
 import Button from "../../components/buttons/Button";
 import Message from "../../components/ui/message/Message";
+import Modal from "../../components/ui/modal/Modal";
 
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 
+
+const DeleteAccountP = styled.p`
+    cursor: pointer;
+    text-transform: uppercase;
+    color: var(--color-danger);
+    font-weight: 500;
+    font-size: 1.6rem;
+`;
 
 let ProfileSchema = Yup.object().shape({
   userName: Yup.string()
@@ -38,6 +48,9 @@ const ProfileScreen = ({ loading, error, updateProfile, cleanUp, firebase }) => 
     }
   }, [cleanUp]) 
   
+  const [ modelOpened, setModalOpened ] = useState(false);
+
+
   if(!firebase.profile.isLoaded) return null;
 
   console.log(loading)
@@ -94,19 +107,20 @@ const ProfileScreen = ({ loading, error, updateProfile, cleanUp, firebase }) => 
                                 title={loading ? "Updating..." : "Update Profile"}
                                 disabled={!isValid || isSubmitting}
                             />
-
-                        </StyledForm>
-                        <MessageWrapper>
-                            <Message errro show={error}>
-                                {error}
-                            </Message>
-                            <Message success show={error === false}>
-                                Thankyou, Profile was updated!
-                            </Message>
-                        </MessageWrapper>
+                            </StyledForm>
+                            <MessageWrapper>
+                                <Message errro show={error}>
+                                    {error}
+                                </Message>
+                                <Message success show={error === false}>
+                                    Thankyou, Profile was updated!
+                                </Message>
+                            </MessageWrapper>
+                            <DeleteAccountP onClick={() => setModalOpened(true)}>Delete Account</DeleteAccountP>
                     </FormWrapper>
                 )}
             </Formik>
+            <Modal opened={modelOpened} close={() => setModalOpened(false)}>Would you like to Delete you account</Modal>
         </SignupWrapper>
   );
 };
