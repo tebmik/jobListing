@@ -37,6 +37,7 @@ export const FormWrapper = styled.div `
   display: ${
     (props) => (props.formClose ? "none" : "flex")
 };
+  padding-bottom: 2rem;
   position: relative;
 `;
 
