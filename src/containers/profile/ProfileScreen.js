@@ -32,6 +32,13 @@ const DeleteAccountP = styled.p`
     }
 `;
 
+const DeleteButtonWrapper = styled.div`
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 2rem;
+`;
+
 let ProfileSchema = Yup.object().shape({
   userName: Yup.string()
         .required("Please supply a user name.")
@@ -129,7 +136,23 @@ const ProfileScreen = ({ loading, error, updateProfile, cleanUp, firebase }) => 
                     </FormWrapper>
                 )}
             </Formik>
-            <Modal opened={modelOpened} close={() => setModalOpened(false)}>Would you like to Delete you account</Modal>
+            <Modal opened={modelOpened} close={() => setModalOpened(false)}>
+                <FormHeader>
+                    <h3>Delete your Account</h3>
+                    <p>Do you really want to delete your account.</p>
+                </FormHeader>
+                <DeleteButtonWrapper>
+                    <Button 
+                        type="submit"
+                        // title={loading ? "Deleting..." : "Delete"}
+                        title="Delete"
+                        />
+                    <Button
+                        type="submit"
+                        title="Cancel"
+                        onClick={() => setModalOpened(false)} />
+                </DeleteButtonWrapper>
+            </Modal>
         </SignupWrapper>
   );
 };
