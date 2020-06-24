@@ -7,8 +7,9 @@ const ModalWrapper = styled.div`
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: ${({ opened }) => (opened ? "translate(-50%, -50%)" : "translate(-50%, -130%)")}; 
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     box-shadow: 0 .5rem 3.5rem var(--shadow);
@@ -20,7 +21,8 @@ const ModalWrapper = styled.div`
     visability: ${({ opened }) => (opened ? "visable" : "hidden")};
     transition: all .2s ease-in-out;
     z-index: 1001;
-    padding: 2rem;
+    padding-bottom: 2rem;
+    overflow: hidden;
 `;
 
 
