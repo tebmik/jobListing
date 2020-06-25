@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const P = styled.p`
   position: relative;
-  max-width: 28rem;
   font-weight: 700;
   font-size: 1.4rem;
   color: ${({ error, success }) => {
