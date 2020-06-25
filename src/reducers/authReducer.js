@@ -5,15 +5,19 @@ const initialState = {
     loading: false,
     verifyEmail: {
         error: null,
-        loading: false
+        loading: false,
     },
     recoverPassword: {
         error: null,
-        loading: false
+        loading: false,
     },
     updateProfile: {
         error: null,
-        loading: false
+        loading: false,
+    },
+    deleteUser: {
+        error: null,
+        loading: false,
     }
 };
 
@@ -163,6 +167,43 @@ export default(state = initialState, {type, payload}) => {
                 ...state,
                 updateProfile: {
                     ...state.updateProfile,
+                    loading: false,
+                    error: false
+                }
+            };
+
+        case actions.DELETE_USER_START:
+            return {
+                ...state,
+                deleteUser: {
+                    ...state.deleteUser,
+                    loading: true,
+                    error: false
+                }
+            };
+        case actions.DELETE_USER_SUCCESS:
+            return {
+                ...state,
+                deleteUser: {
+                    ...state.deleteUser,
+                    loading: false,
+                    error: null
+                }
+            };
+        case actions.DELETE_USER_ERROR:
+            return {
+                ...state, 
+                deleteUser: {
+                    ...state.deleteUser,
+                    loading: false,
+                    error: payload
+                }
+            };
+        case actions.DELETE_USER_END:
+            return {
+                ...state,
+                deleteUser: {
+                    ...state.deleteUser,
                     loading: false,
                     error: false
                 }
