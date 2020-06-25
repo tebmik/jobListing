@@ -124,3 +124,16 @@ export const updateProfile = (data) => async ( dispatch, getState, { getFirebase
   }
   dispatch({ type: actions.PROFILE_UPDATE_END });
 };
+
+export const deleteUser = () => async (dispatch, getState, { getFirebase }) => {
+  const firebase = getFirebase();
+  dispatch({ type: actions.DELETE_USER_START })
+  try {
+    const user = firebase.auth().currentUser;
+    await user.delete();
+    dispatch({ type: actions.DELETE_USER_SUCCESS });
+  } catch(err) {
+    dispatch({ type: actions.DELETE_USER_ERROR, payload: err.message })
+  };
+  dispatch({ type: actions.DELETE_USER_END })
+}
