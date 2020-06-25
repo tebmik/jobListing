@@ -57,10 +57,14 @@ export const StyledForm = styled(Form)`
   width: 100%;
   padding: 3rem 2rem 10rem 2rem;
   position: relative;
+  margin-bottom: 10rem;
 `;
 
 export const MessageWrapper = styled.div `
   position: absolute;
-  bottom: 5.5rem;
+  bottom: 2rem;
   text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 28rem;
 `;
