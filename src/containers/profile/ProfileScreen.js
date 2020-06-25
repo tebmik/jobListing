@@ -56,7 +56,15 @@ let ProfileSchema = Yup.object().shape({
   })
 });
 
-const ProfileScreen = ({ loading, error, updateProfile, cleanUp, firebase }) => {
+const ProfileScreen = ({ 
+    loading, 
+    error, 
+    updateProfile, 
+    cleanUp, 
+    firebase, 
+    deleteUser,
+    deleteError,
+    deleteLoading }) => {
   
   useEffect(() => {
     return () => {
@@ -144,13 +152,22 @@ const ProfileScreen = ({ loading, error, updateProfile, cleanUp, firebase }) => 
                 <DeleteButtonWrapper>
                     <Button 
                         type="submit"
-                        // title={loading ? "Deleting..." : "Delete"}
-                        title="Delete"
+                        title={deleteLoading ? "Deleting..." : "Delete"}
+                        disabled={deleteLoading}
+                        onClick={() => deleteUser()}
                         />
                     <Button
                         type="submit"
                         title="Cancel"
                         onClick={() => setModalOpened(false)} />
+                    <MessageWrapper>
+                        <Message errro show={error}>
+                            {deleteError}
+                        </Message>
+                        <Message success show={error === false}>
+                            Thankyou, Profile was updated!
+                        </Message>
+                    </MessageWrapper>
                 </DeleteButtonWrapper>
             </Modal>
         </SignupWrapper>
@@ -160,10 +177,13 @@ const ProfileScreen = ({ loading, error, updateProfile, cleanUp, firebase }) => 
 const mapStateToProps = ({ auth, firebase }) => ({
   loading: auth.updateProfile.loading,
   error: auth.updateProfile.error, 
-  firebase
+  firebase,
+  deleteError: auth.deleteUser.error,
+  deleteLoading: auth.deleteUser.loading
 });
 const mapDispatchToProps = {
   updateProfile: actions.updateProfile,
+  deleteUser: actions.deleteUser,
   cleanUp: actions.cleanUp
 };
 
