@@ -24,7 +24,7 @@ const ButtonComponent = ({
   type,
   //   loading,
   animateStyle,
-  //   focusRef,
+  focusRef,
   disabled,
   onClick,
   link,
@@ -36,7 +36,7 @@ const ButtonComponent = ({
       {disabled ? (
         <Button
           style={{ width: "100%" }}
-          //   inputRef={focusRef}
+          ref={focusRef}
           type={type}
           variant="contained"
           disabled
@@ -46,7 +46,7 @@ const ButtonComponent = ({
       ) : (
         <Button
           style={{ width: "100%" }}
-          //   inputRef={focusRef}
+          ref={focusRef}
           className={jobs.results ? `animated ${animateStyle}` : null}
           type={type}
           variant="contained"
