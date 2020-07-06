@@ -58,15 +58,15 @@ const RecoverPassword = ({ loading, error, recoverPassword, cleanUp }) => {
                                 type="submit"
                                 title={loading ? "Sending to your email address" : "Recover Password"}
                             />
+                            <MessageWrapper>
+                                <Message error show={error}>
+                                    {error}
+                                </Message>
+                                <Message success show={error === false}>
+                                    Email sent successfully.
+                                </Message>
+                            </MessageWrapper>
                         </StyledForm>
-                        <MessageWrapper>
-                            <Message error show={error}>
-                                {error} 
-                            </Message>
-                            <Message success show={error === false}>
-                                Email sent successfully.
-                            </Message>
-                        </MessageWrapper>
                     </FormWrapper>
                 )}
             </Formik>
