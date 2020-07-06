@@ -73,8 +73,12 @@ const SigninForm = ({ error, loading, login, cleanUp }) => {
                                 disabled={!isValid || isSubmitting}
                             />
 
+                            <div style={{marginTop: "3rem", width: "100%", display: "grid", justifyContent: "center"}}>
+                                <Link title="Forgotton your password?" link="/recover" />
+                            </div>
+
                             <MessageWrapper>
-                                <Message errro show={error}>
+                                <Message error show={error}>
                                     {error}
                                 </Message>
                             </MessageWrapper>
