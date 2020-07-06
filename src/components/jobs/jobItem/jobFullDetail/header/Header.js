@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import Button from "../../../../buttons/Button";
 import Loader from "../../../../ui/loader/Loader";
+
+import { Redirect, Route } from "react-router-dom";
+
 
 const HeaderWrapper = styled.div`
   position: relative;
@@ -52,6 +55,7 @@ const StyledHeartIcon = styled(FavoriteBorderIcon)`
 `;
 
 const Header = ({ job, title }) => {
+
   if (!job) {
     return (
       <HeaderWrapper>
@@ -61,10 +65,6 @@ const Header = ({ job, title }) => {
       </HeaderWrapper>
     );
   }
-
-  // if(job.id !== job.id) {
-
-  // }
 
   return (
     <>
@@ -83,7 +83,12 @@ const Header = ({ job, title }) => {
           </span>
         </div>
         <CallToActionWrapper>
-          <Button type="submit" title="Apply" />
+          <a href={job.redirect_url} rel="noopener noreferrer" target="_blank">
+            <Button 
+              type="submit" 
+              title="Apply"
+            />
+          </a>
           <IconContainer>
             <StyledHeartIcon style={{ fontSize: "3rem" }} />
           </IconContainer>
