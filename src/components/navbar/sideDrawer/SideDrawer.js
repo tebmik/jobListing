@@ -110,7 +110,7 @@ const StyledSearchField = styled.div`
   }
 `;
 
-const SideDrawer = ({ opened, jobs, searchOpen, loggedIn }) => {
+const SideDrawer = ({ opened, jobs, searchOpen, loggedIn, emailVerified }) => {
   const [isOpened, setIsOpened] = useState(false);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
 
@@ -126,6 +126,7 @@ const SideDrawer = ({ opened, jobs, searchOpen, loggedIn }) => {
         <Menu opened={isOpened}>
           <NavItems
             loggedIn={loggedIn}
+            emailVerified={emailVerified}
             mobile
             clicked={() => setIsOpened(false)}
           />
