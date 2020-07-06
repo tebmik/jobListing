@@ -38,4 +38,7 @@ export default createGlobalStyle`
         font-family: inherit;
         text-decoration : none;
     };
+    p {
+        font-family: 'Montserrat', sans-serif;
+    }
 `
