@@ -25,7 +25,8 @@ const NavItems = ({clicked, mobile, loggedIn, emailVerified}) => {
     let links;
     if (loggedIn && !emailVerified) {
         links = (
-            <> {/* <NavItem mobile={mobile} clicked={clicked} title="Home" link="/" /> */}
+            <> 
+                <NavItem mobile={mobile} clicked={clicked} title="Home" link="/" />
                 <NavItem mobile={mobile}
                     clicked={clicked}
                     title="Logout"
@@ -42,12 +43,7 @@ const NavItems = ({clicked, mobile, loggedIn, emailVerified}) => {
                 <NavItem mobile={mobile}
                     clicked={clicked}
                     title="Profile"
-                    link="/profile"/> {/* <NavItem
-          mobile={mobile}
-          clicked={clicked}
-          title="Contact"
-          link="/contact"
-        /> */}
+                    link="/profile"/>
                 <NavItem mobile={mobile}
                     clicked={clicked}
                     title="Logout"
