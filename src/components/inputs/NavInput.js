@@ -13,7 +13,14 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const NavInput = ({ jobs, type, placeholder, handleChange, value }) => {
+const NavInput = ({ 
+  jobs, 
+  type, 
+  placeholder, 
+  handleChange, 
+  value, 
+  focusRef, 
+  keyDown }) => {
     const classes = useStyles();
     return (
         <>
@@ -25,6 +32,8 @@ const NavInput = ({ jobs, type, placeholder, handleChange, value }) => {
                 className={jobs.results ? "animate__animated animate__fadeInLeft" : null}
                 autoComplete="off"
                 type={type} 
+                inputRef={focusRef}
+                onKeyPress={keyDown}
             />
         </>
     );
