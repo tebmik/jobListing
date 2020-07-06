@@ -19,7 +19,7 @@ const Input = ({
   value, 
   handleChange, 
   focusRef, 
-  onKeyDown 
+  keyDown 
 }) => {
 
     const classes = useStyles();
@@ -35,7 +35,7 @@ const Input = ({
                 value={value} 
                 inputRef={focusRef}
                 autoFocus
-                onKeyPress={onKeyDown}
+                onKeyPress={keyDown}
             />
         </>
     );
