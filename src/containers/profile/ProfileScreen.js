@@ -3,6 +3,9 @@ import styled from "styled-components";
 import * as Yup from "yup";
 import { Formik, Field } from "formik";
 
+
+
+
 import { SignupWrapper, FormWrapper, FormHeader, StyledForm, MessageWrapper } from "../../hoc/containers";
 
 import Input from "../../components/ui/forms/input/input";
@@ -75,10 +78,6 @@ const ProfileScreen = ({
   const [ modelOpened, setModalOpened ] = useState(false);
 
 
-  if(!firebase.profile.isLoaded) return null;
-
-  console.log(loading)
-  console.log(error)
   return (
     <SignupWrapper>
             <Formik
@@ -143,7 +142,7 @@ const ProfileScreen = ({
                             <DeleteAccountP onClick={() => setModalOpened(true)}>Delete Account</DeleteAccountP>
                     </FormWrapper>
                 )}
-            </Formik>
+            </Formik>          
             <Modal opened={modelOpened} close={() => setModalOpened(false)}>
                 <FormHeader>
                     <h3>Delete your Account</h3>
