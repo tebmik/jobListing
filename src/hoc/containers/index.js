@@ -7,6 +7,9 @@ export const PageWrapper = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
+  display: ${
+    (props) => (props.formClose ? "none" : "grid")
+};
 `;
 
 export const SignupWrapper = styled.div `
@@ -67,4 +70,15 @@ export const MessageWrapper = styled.div `
   left: 50%;
   transform: translateX(-50%);
   min-width: 28rem;
+`;
+
+export const StyledUserName = styled.span`
+  font-weight: 700;
+  font-style: italic;
+  display: inline-block;
+  margin: 0 0.5rem;
+  
+  animation: bounce;
+  animation-duration: 1s; /* don't forget to set a duration! */
+  animation-delay: .8s;
 `;
