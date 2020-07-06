@@ -1,4 +1,5 @@
 import * as actions from "./types";
+// import { firestore } from "firebase";
 
 // SIGN UP ACTION CREATOR
 
@@ -112,6 +113,7 @@ export const updateProfile = (data) => async ( dispatch, getState, { getFirebase
 
     await firestore.collection("users").doc(uid).set({
       userName: data.userName,
+      photoURL: user.photoURL
     });
 
     if(data.password.length > 0) {
