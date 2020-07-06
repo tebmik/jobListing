@@ -18,7 +18,7 @@ const ModalWrapper = styled.div`
     max-width: 50rem;
     background-color: var(--color-white);
     opacity: ${({ opened }) => (opened ? "1" : "0")};
-    visability: ${({ opened }) => (opened ? "visable" : "hidden")};
+    visibility: ${({ opened }) => (opened ? "visible" : "hidden")};
     transition: all .2s ease-in-out;
     z-index: 1001;
     padding-bottom: 2rem;
