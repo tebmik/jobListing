@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 const StyledLogo = styled(NavLink)`
     display: flex;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     padding: .5rem 1rem;
     cursor: pointer;
     height: 100%;
@@ -17,7 +17,7 @@ const StyledLogo = styled(NavLink)`
 
 const Logo = ({clicked, link}) => {
     return (
-        <StyledLogo onClick={clicked} to={link} ><div>Logo</div></StyledLogo>
+        <StyledLogo onClick={clicked} to={link} ><div>Tebmik</div></StyledLogo>
     );
 };
 
