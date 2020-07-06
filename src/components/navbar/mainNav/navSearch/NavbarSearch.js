@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 
 import NavInput from "../../../inputs/NavInput";
@@ -24,6 +24,28 @@ const SearchWrapper = styled.form`
 const NavbarSearch = ({ jobs, fetchData, loading, error, submitted }) => {
   const [jobTerm, setJobTerm] = useState("");
   const [placeTerm, setPlaceTerm] = useState("");
+
+  const whatRef = useRef(null);
+  const whereRef = useRef(null);
+  const submitRef = useRef(null);
+
+  useEffect(() => {
+    whatRef.current.focus();
+  }, []);
+
+  const handleWhereRef = e => {
+    e.key === "Enter" && e.preventDefault();
+    if(e.key === "Enter") {
+      whereRef.current.focus();
+    };
+  };
+
+  const handleWhatRef = e => {
+    e.key === "Enter" && e.preventDefault();
+    if(e.key === "Enter") {
+      submitRef.current.focus();
+    };
+  };
 
   const handleJobChange = (e) => {
     setJobTerm(e.target.value);
@@ -55,12 +77,16 @@ const NavbarSearch = ({ jobs, fetchData, loading, error, submitted }) => {
           handleChange={handleJobChange}
           placeholder="What?"
           type="text"
+          focusRef={whatRef}
+          keyDown={handleWhereRef}
         />
         <NavInput
           value={placeTerm}
           handleChange={handlePlaceChange}
           placeholder="Where?"
           type="text"
+          focusRef={whereRef}
+          keyDown={handleWhatRef}
         />
         <Button
           disabled={loading}
@@ -68,6 +94,8 @@ const NavbarSearch = ({ jobs, fetchData, loading, error, submitted }) => {
           title={loading ? "Searching..." : "Search"}
           type="submit"
           onClick={error === false ? submitted : null}
+          focusRef={submitRef}
+          keyDown={handleSubmit}
         />
       </SearchWrapper>
     </>
