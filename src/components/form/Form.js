@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 const FormWrapper = styled.div`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   min-height: 50rem;
   min-width: 30rem;
   max-width: 120rem;
@@ -19,13 +19,14 @@ const FormWrapper = styled.div`
   border-radius: 1rem;
   display: ${(props) => (props.formClose ? "none" : "grid")};
   background-color: var(--color-white);
-  // box-shadow: 0rem 0.5rem 3.5rem var(--shadow);
+  padding: 2rem;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
 
 
   @media only screen and (max-width: 768px) {
     grid-template-columns: 1fr;
+    padding: 0;
   }
 `;
 
@@ -34,12 +35,20 @@ const StyledForm = styled.form`
   grid-template-columns: 1fr;
   justify-items: start;
   width: calc(100% - 28%);
+  min-width: 32rem;
+  max-width: 60rem;
+  width: 100%;
   align-self: center;
   padding: 2rem;
   height: 100%;
   box-shadow: 0rem 0.5rem 3.5rem var(--shadow);
   background-color: var(--color-white);
   border-radius: 1rem;
+
+  @media only screen and (max-width: 768px) {
+    box-shadow: none;
+    min-height: 35rem;
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -66,6 +75,9 @@ const P = styled.p`
   @media only screen and (max-width: 768px) {
     font-size: 2.2rem;
     text-align: center;
+  };
+  @media only screen and (min-width: 1400px) {
+    font-size: 3.5rem;
   }
 
 `;
@@ -148,7 +160,6 @@ const Form = ({ error, loading, fetchData, successFetch, jobs, userName }) => {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                // marginTop: "10rem",
                 position: "relative",
               }}
             >
@@ -159,7 +170,7 @@ const Form = ({ error, loading, fetchData, successFetch, jobs, userName }) => {
           </WelcomeWrapper>
         )}
 
-        <StyledForm id="form" onSubmit={handleSubmit}>
+        <StyledForm id="homeForm" onSubmit={handleSubmit}>
           <InputWrapper>
             <Input
               // onKeyDown={handleJobKeydown}
