@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 
 const InputWrapper = styled.div`
   width: 100%;
@@ -13,7 +15,7 @@ const InputWrapper = styled.div`
   }
 `;
 
-const StyledInput = styled.input`
+const StyledInput = styled(TextField)`
   padding: 1rem 2rem;
   background-color: var(--color-Main);
   // border: none;
@@ -36,10 +38,25 @@ const Error = styled.div`
   padding: 0rem 2rem;
 `;
 
-const Input = ({ field, form: { touched, errors }, ...props }) => {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      width: "100%",
+      fontSize: "2rem"
+    },
+  },
+}));
+
+const Input = ({ placeholder, field, form: { touched, errors }, ...props }) => {
+
+  const classes = useStyles();
   return (
     <InputWrapper>
-      <StyledInput {...field} {...props} />
+      <StyledInput {...field} {...props}
+        classes={{root: classes.root}}
+        autoComplete="off"
+        id="standard-basic" 
+        label={placeholder} />
       <Error show={errors[field.name] && touched[field.name]}>
         {errors[field.name]}
       </Error>
