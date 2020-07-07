@@ -35,14 +35,13 @@ const Error = styled.div`
   color: var(--color-danger);
   font-weight: 500;
   font-size: 1.2rem;
-  padding: 0rem 2rem;
 `;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       width: "100%",
-      fontSize: "2rem"
+      fontSize: "2rem",
     },
   },
 }));
