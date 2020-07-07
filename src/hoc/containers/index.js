@@ -17,15 +17,17 @@ export const SignupWrapper = styled.div `
   display: flex;
   justify-content: center;
   align-items: center;
-  // background-color: var(--shadow);
   min-height: 100vh;
-  max-width: 50rem;
-  margin: 0 auto;
+  margin-top: 5rem;
+  width: 100%;
+
+  animation: fadeIn;
+  animation-duration: 1s; /* don't forget to set a duration! */
 `;
 
 export const FormWrapper = styled.div `
   min-width: 32rem;
-  max-width: 90rem;
+  max-width: 100rem;
   width: 100%;
   margin: 0 auto;
   border-radius: 1rem;
@@ -55,10 +57,11 @@ export const FormHeader = styled.div `
 `;
 
 export const StyledForm = styled(Form)`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 2rem;
   width: 100%;
-  padding: 3rem 2rem 10rem 2rem;
+  padding: 5rem 4rem 10rem 4rem;
   position: relative;
   margin-bottom: 10rem;
 `;
@@ -81,4 +84,23 @@ export const StyledUserName = styled.span`
   animation: bounce;
   animation-duration: 1s; /* don't forget to set a duration! */
   animation-delay: .8s;
+`;
+
+export const HeaderP = styled.p`
+    font-size: 1.4rem;
+    color: var(--color-white);
+`;
+
+export const Header = styled.div`
+    background-color: var(--color-info);
+    width: 100%;
+    padding: 2rem;
+    borderBottom: 1px solid var(--shadow);
+    marginBottom: 4rem;    
+`;
+
+export const H3 = styled.h3`
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    color: var(--color-heading);
 `;
