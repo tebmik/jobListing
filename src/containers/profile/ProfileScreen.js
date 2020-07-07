@@ -6,7 +6,15 @@ import { Formik, Field } from "formik";
 
 
 
-import { SignupWrapper, FormWrapper, FormHeader, StyledForm, MessageWrapper } from "../../hoc/containers";
+import { 
+    SignupWrapper, 
+    FormWrapper, 
+    FormHeader, 
+    StyledForm, 
+    MessageWrapper,
+    Header,
+    HeaderP,
+    H3 } from "../../hoc/containers";
 
 import Input from "../../components/ui/forms/input/input";
 import Button from "../../components/buttons/Button";
@@ -35,12 +43,20 @@ const DeleteAccountP = styled.p`
     }
 `;
 
+const PasswordWrapper = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(36.51rem, 1fr));
+    grid-gap: 2rem;
+    margin-bottom: 3rem;
+`;
+
 const DeleteButtonWrapper = styled.div`
     display: flex;
     justify-content: space-around;
     width: 100%;
     padding: 2rem;
 `;
+
 
 let ProfileSchema = Yup.object().shape({
   userName: Yup.string()
@@ -80,38 +96,40 @@ const ProfileScreen = ({
 
   return (
     <SignupWrapper>
-            <Formik
-                initialValues={{
-                    userName: firebase.profile.userName,
-                    email: firebase.auth.email,
-                    password: "",
-                    confirmPassword: ""
-                }}
-                validationSchema={ProfileSchema}
-                onSubmit={async (values, { setSubmitting }) => {
-                    await updateProfile(values);
-                    setSubmitting(false);
-                }}>
-                {({ isSubmitting, isValid }) => (
-                    <FormWrapper>
-                        <FormHeader>
-                            <h3>Would you like to update your information.</h3>
-                            <p>Fill out this form. Its that simple.</p>
-                        </FormHeader>
-                        <StyledForm>
-                            <Field
-                                type="text"
-                                name="userName"
-                                placeholder="Your new user name..."
-                                component={Input}
-                            />
-                            <Field
-                                type="email"
-                                name="email"
-                                placeholder="Your new email..."
-                                component={Input}
-                                autoComplete="off"
-                            />
+        <Formik
+            initialValues={{
+                userName: firebase.profile.userName,
+                email: firebase.auth.email,
+                password: "",
+                confirmPassword: ""
+            }}
+            validationSchema={ProfileSchema}
+            onSubmit={async (values, { setSubmitting }) => {
+                await updateProfile(values);
+                setSubmitting(false);
+            }}>
+            {({ isSubmitting, isValid }) => (
+                <FormWrapper>
+                    <Header 
+                        >
+                        <H3>Personal Information</H3>
+                        <HeaderP>Update Your account information.</HeaderP>
+                    </Header>
+                    <StyledForm>
+                        <Field
+                            type="text"
+                            name="userName"
+                            placeholder="Your new user name..."
+                            component={Input}
+                        />
+                        <Field
+                            type="email"
+                            name="email"
+                            placeholder="Your new email..."
+                            component={Input}
+                            autoComplete="off"
+                        />
+                        <PasswordWrapper>
                             <Field
                                 type="password"
                                 name="password"
@@ -125,51 +143,52 @@ const ProfileScreen = ({
                                 placeholder="Re-type you new Password..."
                                 component={Input}
                             />
-                            <Button
-                                type="submit"
-                                title={loading ? "Updating..." : "Update Profile"}
-                                disabled={!isValid || isSubmitting}
-                            />
-                            </StyledForm>
-                            <MessageWrapper>
-                                <Message errro show={error}>
-                                    {error}
-                                </Message>
-                                <Message success show={error === false}>
-                                    Thankyou, Profile was updated!
-                                </Message>
-                            </MessageWrapper>
-                            <DeleteAccountP onClick={() => setModalOpened(true)}>Delete Account</DeleteAccountP>
-                    </FormWrapper>
-                )}
-            </Formik>          
-            <Modal opened={modelOpened} close={() => setModalOpened(false)}>
-                <FormHeader>
-                    <h3>Delete your Account</h3>
-                    <p>Do you really want to delete your account.</p>
-                </FormHeader>
-                <DeleteButtonWrapper>
-                    <Button 
-                        type="submit"
-                        title={deleteLoading ? "Deleting..." : "Delete"}
-                        disabled={deleteLoading}
-                        onClick={() => deleteUser()}
+                        </PasswordWrapper>
+                        <Button
+                            type="submit"
+                            title={loading ? "Updating..." : "Update Profile"}
+                            disabled={!isValid || isSubmitting}
                         />
-                    <Button
-                        type="submit"
-                        title="Cancel"
-                        onClick={() => setModalOpened(false)} />
-                    <MessageWrapper>
-                        <Message errro show={error}>
-                            {deleteError}
-                        </Message>
-                        <Message success show={error === false}>
-                            Thankyou, Profile was updated!
-                        </Message>
-                    </MessageWrapper>
-                </DeleteButtonWrapper>
-            </Modal>
-        </SignupWrapper>
+                        </StyledForm>
+                        <MessageWrapper>
+                            <Message errro show={error}>
+                                {error}
+                            </Message>
+                            <Message success show={error === false}>
+                                Thankyou, Profile was updated!
+                            </Message>
+                        </MessageWrapper>
+                        <DeleteAccountP onClick={() => setModalOpened(true)}>Delete Account</DeleteAccountP>
+                </FormWrapper>
+            )}
+        </Formik>          
+        <Modal opened={modelOpened} close={() => setModalOpened(false)}>
+            <FormHeader>
+                <h3>Delete your Account</h3>
+                <p>Do you really want to delete your account.</p>
+            </FormHeader>
+            <DeleteButtonWrapper>
+                <Button 
+                    type="submit"
+                    title={deleteLoading ? "Deleting..." : "Delete"}
+                    disabled={deleteLoading}
+                    onClick={() => deleteUser()}
+                    />
+                <Button
+                    type="submit"
+                    title="Cancel"
+                    onClick={() => setModalOpened(false)} />
+                <MessageWrapper>
+                    <Message errro show={error}>
+                        {deleteError}
+                    </Message>
+                    <Message success show={error === false}>
+                        Thankyou, Profile was updated!
+                    </Message>
+                </MessageWrapper>
+            </DeleteButtonWrapper>
+        </Modal>
+    </SignupWrapper>
   );
 };
 
