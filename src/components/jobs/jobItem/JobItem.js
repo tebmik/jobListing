@@ -16,7 +16,6 @@ const StyledContainer = styled.div`
   height: 100%;
   overflow: hidden;
   position: relative;
-  margin: 0.5rem 1rem;
   overflow: hidden;
   transition: 0.25s cubic-bezier(0.17, 0.67, 0.83, 0.67);
 `;
