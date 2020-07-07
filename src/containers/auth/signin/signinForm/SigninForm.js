@@ -8,6 +8,9 @@ import {
     StyledForm,
     FormHeader,
     SignupWrapper,
+    Header,
+    HeaderP,
+    H3
 } from "../../../../hoc/containers";
 
 import * as actions from "../../../../actions";
@@ -48,10 +51,10 @@ const SigninForm = ({ error, loading, login, cleanUp }) => {
                 }}>
                 {({ isSubmitting, isValid }) => (
                     <FormWrapper>
-                        <FormHeader>
-                            <h3>Signin</h3>
-                            <p>Signin and find your new career.</p>
-                        </FormHeader>
+                        <Header>
+                            <H3>Signin</H3>
+                            <HeaderP>Signin and find your new career.</HeaderP>
+                        </Header>
                         <StyledForm>
                             <Field
                                 type="email"
