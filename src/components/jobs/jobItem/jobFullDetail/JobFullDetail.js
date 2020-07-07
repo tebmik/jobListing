@@ -15,7 +15,6 @@ const Wrapper = styled.div`
   top: -9rem;
   border: 1px solid #c5c8d5;
   border-radius: 10px;
-  margin: 0.5rem 1rem;
   max-height: 100vh;
   height: calc(100% - 7rem);
   overflow: hidden;
