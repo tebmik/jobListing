@@ -3,15 +3,11 @@ import styled from "styled-components";
 import * as Yup from "yup";
 import { Formik, Field } from "formik";
 
-
-
-
 import { 
     SignupWrapper, 
     FormWrapper, 
     FormHeader, 
     StyledForm, 
-    MessageWrapper,
     Header,
     HeaderP,
     H3 } from "../../hoc/containers";
@@ -24,6 +20,16 @@ import Modal from "../../components/ui/modal/Modal";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
+const MessageWrapper = styled.div`
+    position: absolute;
+    bottom: 10rem;
+    text-align: center;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    min-width: 32rem;
+`;
 
 
 const DeleteAccountP = styled.p`
@@ -44,10 +50,14 @@ const DeleteAccountP = styled.p`
 `;
 
 const PasswordWrapper = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(36.51rem, 1fr));
-    grid-gap: 2rem;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 3rem;
+
+    @media only screen and (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 `;
 
 const DeleteButtonWrapper = styled.div`
@@ -110,8 +120,7 @@ const ProfileScreen = ({
             }}>
             {({ isSubmitting, isValid }) => (
                 <FormWrapper>
-                    <Header 
-                        >
+                    <Header>
                         <H3>Personal Information</H3>
                         <HeaderP>Update Your account information.</HeaderP>
                     </Header>
@@ -164,8 +173,8 @@ const ProfileScreen = ({
         </Formik>          
         <Modal opened={modelOpened} close={() => setModalOpened(false)}>
             <FormHeader>
-                <h3>Delete your Account</h3>
-                <p>Do you really want to delete your account.</p>
+                <H3>Delete your Account</H3>
+                <HeaderP>Do you really want to delete your account.</HeaderP>
             </FormHeader>
             <DeleteButtonWrapper>
                 <Button 
