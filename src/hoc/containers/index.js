@@ -20,14 +20,16 @@ export const SignupWrapper = styled.div `
   min-height: 100vh;
   margin-top: 5rem;
   width: 100%;
+  z-index: 500;
 
   animation: fadeIn;
   animation-duration: 1s; /* don't forget to set a duration! */
+  background-color: var(--color-white);
 `;
 
 export const FormWrapper = styled.div `
   min-width: 32rem;
-  max-width: 100rem;
+  max-width: 60rem;
   width: 100%;
   margin: 0 auto;
   border-radius: 1rem;
@@ -57,24 +59,25 @@ export const FormHeader = styled.div `
 `;
 
 export const StyledForm = styled(Form)`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  // grid-gap: 2rem;
   min-width: 30rem;
   max-width: 60rem;
   width: 100%;
-  padding: 5rem 4rem 10rem 4rem;
+  padding: 2rem;
   position: relative;
   margin-bottom: 10rem;
+  margin-top: 5rem;
 `;
 
 export const MessageWrapper = styled.div `
   position: absolute;
-  bottom: 2rem;
+  bottom: -2rem;
   text-align: center;
   left: 50%;
   transform: translateX(-50%);
-  min-width: 28rem;
+  min-width: 30rem;
 `;
 
 export const StyledUserName = styled.span`
@@ -89,7 +92,7 @@ export const StyledUserName = styled.span`
 `;
 
 export const HeaderP = styled.p`
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: var(--color-white);
 `;
 
@@ -103,6 +106,6 @@ export const Header = styled.div`
 
 export const H3 = styled.h3`
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color: var(--color-heading);
 `;
