@@ -31,9 +31,9 @@ const FormWrapper = styled.div`
 `;
 
 const StyledForm = styled.form`
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-items: start;
+  display: flex;
+  flex-direction: column;
+  // justify-items: start;
   width: calc(100% - 28%);
   min-width: 32rem;
   max-width: 60rem;
@@ -43,7 +43,7 @@ const StyledForm = styled.form`
   height: 100%;
   box-shadow: 0rem 0.5rem 3.5rem var(--shadow);
   background-color: var(--color-white);
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 
   @media only screen and (max-width: 768px) {
     box-shadow: none;
@@ -57,11 +57,23 @@ const InputWrapper = styled.div`
   width: 100%;
   position: relative;
   align-items: center;
+  // grid-gap: 6rem;
+  height: 100%;
+
+  media only screen and (max-width: 768px) {
+    grid-gap:2rem;
+  }
 `;
 
 const WelcomeWrapper = styled.div`
   padding: 2rem;
   width: calc(100% - 28%);
+  display: grid;
+  align-content: center;
+
+  @media only screen and (max-width: 425px) {
+    width: 100%;
+  };
 `;
 
 const P = styled.p`
@@ -73,7 +85,7 @@ const P = styled.p`
 
 
   @media only screen and (max-width: 768px) {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     text-align: center;
   };
   @media only screen and (min-width: 1400px) {
@@ -88,9 +100,9 @@ const Form = ({ error, loading, fetchData, successFetch, jobs, userName }) => {
   const [placeTerm, setPlaceTerm] = useState("");
   const [close, setClose] = useState(false);
 
-  useEffect(() => {
-    whatRef.current.focus();
-  }, []);
+  // useEffect(() => {
+  //   whatRef.current.focus();
+  // }, []);
   const whatRef = useRef(null);
   const whereRef = useRef(null);
   const submitRef = useRef(null);
@@ -143,7 +155,6 @@ const Form = ({ error, loading, fetchData, successFetch, jobs, userName }) => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  // marginTop: "10rem",
                   position: "relative",
                 }}
               >
