@@ -60,6 +60,8 @@ export const StyledForm = styled(Form)`
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 2rem;
+  min-width: 30rem;
+  max-width: 60rem;
   width: 100%;
   padding: 5rem 4rem 10rem 4rem;
   position: relative;
