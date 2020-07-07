@@ -9,6 +9,9 @@ import {
     StyledForm,
     FormHeader,
     SignupWrapper,
+    Header,
+    HeaderP,
+    H3
 } from "../../../../hoc/containers";
 
 import Input from "../../../../components/ui/forms/input/input";
@@ -57,10 +60,10 @@ const SignUpForm = ({ signUp, loading, error, cleanUp, handleClick }) => {
                 }}>
                 {({ isSubmitting, isValid }) => (
                     <FormWrapper>
-                        <FormHeader>
-                            <h3>Signup</h3>
-                            <p>Signup to find your new career.</p>
-                        </FormHeader>
+                        <Header>
+                            <H3>Signup</H3>
+                            <HeaderP>Signup to find your new career.</HeaderP>
+                        </Header>
                         <StyledForm>
                             <Field
                                 type="text"
