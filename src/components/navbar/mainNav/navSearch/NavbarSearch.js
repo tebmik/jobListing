@@ -28,10 +28,7 @@ const NavbarSearch = ({ jobs, fetchData, loading, error, submitted }) => {
   const whatRef = useRef(null);
   const whereRef = useRef(null);
   const submitRef = useRef(null);
-
-  useEffect(() => {
-    whatRef.current.focus();
-  }, []);
+  
 
   const handleWhereRef = e => {
     e.key === "Enter" && e.preventDefault();
